@@ -1,17 +1,24 @@
+import page from "../page/page"
+
 describe('cypress test', () => {
-  it('should login and click some things', () => {
-    cy.visit('http://localhost:8080')
-    cy.contains('Login').click()
-    cy.url().should('include', '/root/plans/list')
-    
-    cy.contains(' Keywords').click()
-    cy.url().should('include', '/root/functions')
+  it('should login and be in plans', () => {
+    page.open()
+    page.login()
+    page.check('/plans/list')
+  })
 
-    cy.contains(' Parameters').click()
-    cy.url().should('include', '/root/parameters')
+  it('should login and be in keywords', () => {
+    page.clickOn('Keywords')
+    page.check('/functions')
+  })
 
-    cy.contains(' Grid').click()
-    cy.url().should('include', '/root/grid/agents')
+  it('should login and be in parameters', () => {
+    page.clickOn('Parameters')
+    page.check('/parameters')
+  })
 
+  it('should login and be in Schedules', () => {
+    page.clickOn('Scheduler')
+    page.check('/scheduler')
   })
 })
